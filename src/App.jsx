@@ -1,12 +1,13 @@
 import './App.css'
 import { AppRouter } from './router/AppRouter'
+import { AppTheme } from './theme'
 
 function App() {
 
    return (
-      <div className="App">
+      <AppTheme>
          <AppRouter />
-      </div>
+      </AppTheme>
    )
 }
 
