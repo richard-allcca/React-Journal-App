@@ -1,34 +1,25 @@
-import { Link as LinkRouter } from 'react-router-dom'
 
-import { AppBar, IconButton, Link, Toolbar, Typography } from "@mui/material"
-import MenuOutlineIcon from '@mui/icons-material/MenuOutlined'
 import { Box } from '@mui/system'
+import { NavBar, SideBar } from '../components'
+import { Toolbar } from '@mui/material';
 
+const drawerWidth = 240;
 
 export const JournalLayout = ({ children }) => {
    return (
-      <>
-         <AppBar position="sticky" elevation={ 0 } >
-            <Toolbar>
-               <IconButton
-                  size='large'
-                  edge='start'
-                  color='info'
-               >
-                  <MenuOutlineIcon />
-               </IconButton>
+      <Box sx={ { display: 'flex' } }>
 
-               <div style={ { flex: 1 } } />
+         <NavBar drawerWidth={ drawerWidth } />
 
-               <Link component={ LinkRouter } color="#fff" underline='none' >
-                  <Typography variant='h6' color="white">Cambiar tema</Typography>
-               </Link>
-            </Toolbar>
-         </AppBar>
+         <SideBar drawerWidth={ drawerWidth } />
 
-         <Box component="main" sx={ { flexGrow: 1, p: 3 } } >
+         <Box
+            component="main"
+            sx={ { flexGrow: 1, p: 3 } }
+         >
+            <Toolbar />
             { children }
          </Box>
-      </>
+      </Box>
    )
 }
