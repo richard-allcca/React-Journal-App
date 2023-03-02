@@ -1,17 +1,42 @@
 # Journal App
 
-Una aplicación que simula una especie de diario digital, permite crear todo tipo de anotaciones y agregar imagenes. 
+Una aplicación que simula una especie de diario digital, permite crear todo tipo de anotaciones y agregar imagenes.
+
+## NPM
+
+  yarn install @mui/material @emotion/react @emotion/styled
 
 ## Temas tocados en este proyecto
 
-   - Maquetación con MaterialUi
-   - Redux
-   - Store
-   - Middlewares
-   - Dispatch
-   - Actions
-   - State
-   - Acciones asíncronas
-   - RTK Query
-   - Redux Toolkit
-   - Slices
+- Maquetación con MaterialUi
+- Redux
+- Store
+- Middlewares
+- Dispatch
+- Actions
+- State
+- Acciones asíncronas
+- RTK Query
+- Redux Toolkit
+- Slices
+
+## Notas
+
+Link - Este componente de Material solo tiene estilos no funcionalidad asi que debes usar el atributo `component={}`
+
+Typography - Puedes convertir este por ejemplo en h1 con 'compoent=h1' pero si necesitas que sea como el tema que material le puso por defecto usa 'variant=h1'
+
+SX - Es similar a 'style' de un elemento html solo que con este adémas tienes acceso a las propiedades del  tema que definimos con themeProvider
+
+XS - Pantalla extra pequeña
+SM - Pantalla pequeña
+MD - Pantalla mediana
+XL - Pantalla grande
+
+## Enlaces
+
+[Material Icons](https://v4.mui.com/es/components/material-icons/#material-icons)
+
+## Flujo de Archivos
+
+ ![Diagrama de flujo](/src/assets/Diagramas%20t%C3%A9cnicos.jpg)
