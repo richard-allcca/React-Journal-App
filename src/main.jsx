@@ -19,5 +19,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </Provider>
   </React.StrictMode>
 );
-
-// NOTE - Contenedor de Redux. BrowserRoutes y App

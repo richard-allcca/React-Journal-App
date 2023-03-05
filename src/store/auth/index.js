@@ -1,4 +1,4 @@
 
 
 export * from './authSlice';
-export * from './thunk';
+export * from './autThhunk';

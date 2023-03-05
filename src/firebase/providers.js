@@ -1,8 +1,9 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { FirebaseAuth } from "./config";
 
-
 const googleProvider = new GoogleAuthProvider();
+
+// Class - 278 Auth con google
 
 export const singInWithGoogle = async () => {
 
@@ -10,10 +11,10 @@ export const singInWithGoogle = async () => {
 
     const result = await signInWithPopup(FirebaseAuth, googleProvider);
 
-    // REVIEW - de esta forma se obtienen las credentials como el access token y mas
+    // REVIEW - Método para obtiener las credentials de google como el  token y hacer más
     // const credentials = GoogleAuthProvider.credentialFromResult(result);
 
-    // Aquí se obtiene los datos del usuario authenticado
+    // Datos del usuario authenticado
     const { displayName, email, photoURL, uid } = result.user;
 
     return {
@@ -27,9 +28,9 @@ export const singInWithGoogle = async () => {
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
-    // The email of the user's account used.
+    // The email of the user's account used.(optional)
     const email = error.customData.email;
-    // The AuthCredential type that was used.
+    // The AuthCredential type that was used. (optional)
     const credential = GoogleAuthProvider.credentialFromError(error);
     // ...
 
