@@ -1,4 +1,4 @@
-import { singInWithGoogle } from '../../firebase/providers';
+import { registerUserWithEmailPassword, singInWithGoogle } from '../../firebase/providers';
 
 import { checkinCredentials, login, logout } from ".";
 
@@ -20,5 +20,19 @@ export const startGoogleSingIn = (email, password) => {
     if (!result.ok) return dispatch(logout(result.errorMessage));
 
     dispatch(login(result));
+  };
+};
+
+export const startCreatingUserWithEmailPassword = ({ email, password, displayName }) => {
+
+  return async (dispatch) => {
+
+    dispatch(checkinCredentials());
+
+    const resp = await registerUserWithEmailPassword({ email, password, displayName });
+
+    if (!resp.ok) return dispatch(logout(resp.errorMessage));
+
+    dispatch(login({ uid, displayName, email, photoURL }));
   };
 };

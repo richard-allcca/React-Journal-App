@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Link as LinkRouter } from 'react-router-dom';
+import { useFrom } from '../../hooks';
+
 import { Google } from "@mui/icons-material";
 import { Button, Grid, Link, TextField, Typography } from "@mui/material";
 import { AuthLayout } from './../layout/AuthLayout';
 
-import { useFrom } from '../../hooks';
 
 import { checkingAuthentication, startGoogleSingIn } from './../../store/auth';
 import { useMemo } from 'react';
@@ -17,14 +18,14 @@ export const LoginPage = () => {
   const dispatch = useDispatch();
 
   const { status } = useSelector(state => state.auth);
+  // Desactiva los botones mientras esta authenticando
+  const isAuthentication = useMemo(() => status === 'cheking', [status]);
 
   const { email, password, onInputChange } = useFrom({
     email: "richard_allcca_llano@hotmail.com",
     password: "123456"
   });
 
-  // Desactiva los botones mientras esta authenticando
-  const isAuthenticating = useMemo(() => status === 'cheking', [status]);
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -77,7 +78,7 @@ export const LoginPage = () => {
 
             <Grid item xs={ 12 } sm={ 6 } >
               <Button
-                disabled={ isAuthenticating }
+                disabled={ isAuthentication }
                 type='submit' //! importante para el onSubmit 
                 variant="contained"
                 fullWidth >
@@ -87,7 +88,7 @@ export const LoginPage = () => {
 
             <Grid item xs={ 12 } sm={ 6 } >
               <Button
-                disabled={ isAuthenticating }
+                disabled={ isAuthentication }
                 variant="contained"
                 fullWidth
                 onClick={ onGoogleSingIn }
