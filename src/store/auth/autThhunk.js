@@ -1,4 +1,4 @@
-import { registerUserWithEmailPassword, singInWithGoogle } from '../../firebase/providers';
+import { loginWithEmailPassword, registerUserWithEmailPassword, singInWithGoogle } from '../../firebase/providers';
 
 import { checkinCredentials, login, logout } from ".";
 
@@ -23,7 +23,7 @@ export const startGoogleSingIn = (email, password) => {
   };
 };
 
-export const startCreatingUserWithEmailPassword = ({ email, password, displayName }) => {
+export const creatingUserWithEmailPassword = ({ email, password, displayName }) => {
 
   return async (dispatch) => {
 
@@ -33,6 +33,22 @@ export const startCreatingUserWithEmailPassword = ({ email, password, displayNam
 
     if (!resp.ok) return dispatch(logout(resp.errorMessage));
 
-    dispatch(login({ uid, displayName, email, photoURL }));
+    // TODO -  cheking send uuid and photoURL in class 284
+    dispatch(login({ displayName, email }));
+  };
+};
+
+export const initLoginWithEmailPassword = ({ email, password }) => {
+
+  return async (dispatch) => {
+
+    dispatch(checkinCredentials());
+
+    const resp = await loginWithEmailPassword({ email, password });
+
+    if (!resp.ok) return dispatch(logout(resp.errorMessage));
+
+    dispatch(login(resp));
+
   };
 };

@@ -4,33 +4,48 @@ import { Link as LinkRouter } from 'react-router-dom';
 import { useFrom } from '../../hooks';
 
 import { Google } from "@mui/icons-material";
-import { Button, Grid, Link, TextField, Typography } from "@mui/material";
+import { Alert, Button, Grid, Link, TextField, Typography } from "@mui/material";
 import { AuthLayout } from './../layout/AuthLayout';
 
 
-import { checkingAuthentication, startGoogleSingIn } from './../../store/auth';
-import { useMemo } from 'react';
+import { checkingAuthentication, initLoginWithEmailPassword, startGoogleSingIn } from './../../store/auth';
+import { useMemo, useState } from 'react';
 
+const initialState = {
+  displayName: '',
+  email: '',
+  password: '',
+};
 
+const validationsInput = {
+  email: [(value) => value.includes('@'), 'El correo debe tener una @'],
+  password: [(value) => value.length >= 6, 'El password debe tener más de 6 caracteres'],
+};
 
 export const LoginPage = () => {
+  const [isSubmited, setIsSubmited] = useState(false);
 
   const dispatch = useDispatch();
 
-  const { status } = useSelector(state => state.auth);
+  const { status, errorMessage } = useSelector(state => state.auth);
+
   // Desactiva los botones mientras esta authenticando
   const isAuthentication = useMemo(() => status === 'cheking', [status]);
 
-  const { email, password, onInputChange } = useFrom({
-    email: "richard_allcca_llano@hotmail.com",
-    password: "123456"
-  });
+  const {
+    formState, email, password, onInputChange,
+    isFormValid, emailValid, passwordValid,
+  } = useFrom(initialState, validationsInput);
 
 
   const onSubmit = (event) => {
     event.preventDefault();
+    setIsSubmited(true);
 
-    dispatch(checkingAuthentication());
+    if (!isFormValid) return;
+
+    dispatch(initLoginWithEmailPassword(formState));
+
   };
 
   const onGoogleSingIn = () => {
@@ -57,6 +72,8 @@ export const LoginPage = () => {
               name="email"
               value={ email }
               onChange={ onInputChange }
+              error={ emailValid && isSubmited }
+              helperText={ emailValid }
             />
           </Grid>
 
@@ -69,12 +86,21 @@ export const LoginPage = () => {
               name='password'
               value={ password }
               onChange={ onInputChange }
+              error={ passwordValid && isSubmited }
             />
           </Grid>
 
           {/* SECTION - Buttons */ }
 
           <Grid container spacing={ 2 } sx={ { mb: 2, mt: 1 } } >
+
+            <Grid
+              display={ !!errorMessage ? '' : 'none' }
+              item
+              xs={ 12 }
+            >
+              <Alert severity='error' >{ errorMessage }</Alert>
+            </Grid>
 
             <Grid item xs={ 12 } sm={ 6 } >
               <Button

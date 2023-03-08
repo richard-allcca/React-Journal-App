@@ -7,7 +7,7 @@ import { Alert, Button, Grid, Link, TextField, Typography } from "@mui/material"
 import { AuthLayout } from './../layout/AuthLayout';
 import { useFrom } from './../../hooks/useForm';
 
-import { startCreatingUserWithEmailPassword } from './../../store/auth';
+import { creatingUserWithEmailPassword } from './../../store/auth';
 
 
 const initialState = {
@@ -42,7 +42,7 @@ export const RegisterPage = () => {
 
     if (!isFormValid) return;
 
-    dispatch(startCreatingUserWithEmailPassword(formState));
+    dispatch(creatingUserWithEmailPassword(formState));
   };
 
   return (
