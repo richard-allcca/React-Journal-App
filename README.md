@@ -1,4 +1,4 @@
-# Journal App
+# Journal App (IN PROGRESS)
 
 Una aplicación que simula una especie de diario digital, permite crear todo tipo de anotaciones y agregar imagenes.
 
@@ -36,6 +36,10 @@ XL - Pantalla grande
 ## Enlaces
 
 [Material Icons](https://v4.mui.com/es/components/material-icons/#material-icons)
+
+## Vista Previa
+
+![En progreso](/public/Captura%20de%20pantalla%202023-03-12%20095507.png)
 
 ## Flujo de Archivos
 
