@@ -15,7 +15,7 @@ export const AuthLayout = ({ children, title = '' }) => {
     >
       <Grid
         item
-        className="box-shadow"
+        className="box-shadow animate__animated animate__pulse"
         xs={ 3 }
         sx={ {
           width: { sm: 450 },// en patallas pequeñas

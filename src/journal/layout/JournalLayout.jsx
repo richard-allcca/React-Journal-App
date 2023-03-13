@@ -16,8 +16,9 @@ export const JournalLayout = ({ children }) => {
       <Box
         component="main"
         sx={ { flexGrow: 1, p: 3, mt: 7, backgroundColor: 'lightgray' } }
+        className='animate__animated animate__bounceInRight'
       >
-        {/* <Toolbar />  comentado por el marginTop de box */}
+        {/* <Toolbar />  comentado por el marginTop de box */ }
         { children }
       </Box>
     </Box>

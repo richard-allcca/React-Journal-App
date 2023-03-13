@@ -7,9 +7,9 @@ import { Google } from "@mui/icons-material";
 import { Alert, Button, Grid, Link, TextField, Typography } from "@mui/material";
 import { AuthLayout } from './../layout/AuthLayout';
 
-
-import { checkingAuthentication, initLoginWithEmailPassword, startGoogleSingIn } from './../../store/auth';
+import { initLoginWithEmailPassword, startGoogleSingIn } from './../../store/auth';
 import { useMemo, useState } from 'react';
+
 
 const initialState = {
   displayName: '',
@@ -21,6 +21,7 @@ const validationsInput = {
   email: [(value) => value.includes('@'), 'El correo debe tener una @'],
   password: [(value) => value.length >= 6, 'El password debe tener más de 6 caracteres'],
 };
+
 
 export const LoginPage = () => {
   const [isSubmited, setIsSubmited] = useState(false);

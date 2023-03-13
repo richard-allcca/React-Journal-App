@@ -19,6 +19,12 @@ Una aplicación que simula una especie de diario digital, permite crear todo tip
 - RTK Query
 - Redux Toolkit
 - Slices
+- Firebase
+- Firestore
+- Formularios
+- Google SingIn
+- Acciones Asíncronas
+- Mantener el estado de la authenticación
 
 ## Notas
 
@@ -36,6 +42,7 @@ XL - Pantalla grande
 ## Enlaces
 
 [Material Icons](https://v4.mui.com/es/components/material-icons/#material-icons)
+[Animate css](https://animate.style/)
 
 ## Vista Previa
 
