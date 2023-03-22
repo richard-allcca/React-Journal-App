@@ -1,8 +1,12 @@
 import { SaveOutlined } from "@mui/icons-material";
 import { Button, Grid, TextField, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
 import { ImageGalery } from "../components/";
 
 export const NoteView = () => {
+	const { active } = useSelector((state) => state.journal);
+	const { title, body, date, id } = active;
+
 	return (
 		<Grid
 			container
@@ -13,7 +17,7 @@ export const NoteView = () => {
 		>
 			<Grid item>
 				<Typography fontSize={39} fontWeight="light">
-					27 de noviembre, 2022
+					{new Date(date).toLocaleDateString()}
 				</Typography>
 			</Grid>
 
@@ -30,8 +34,9 @@ export const NoteView = () => {
 					variant="filled"
 					fullWidth
 					placeholder="Ingrese un titulo"
-					label="Titulo"
+					label={title ? "" : "Titulo"}
 					sx={{ border: "none", mb: 1 }}
+					value={title}
 				/>
 
 				<TextField
@@ -40,8 +45,9 @@ export const NoteView = () => {
 					fullWidth
 					multiline
 					placeholder="Que sucedio hoy?"
-					label="Detalles"
+					label={body ? "" : "Detalles"}
 					minRows={5}
+					value={body}
 				/>
 			</Grid>
 

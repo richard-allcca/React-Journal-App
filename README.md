@@ -26,7 +26,7 @@ Una aplicación que simula una especie de diario digital, permite crear todo tip
 - Acciones Asíncronas
 - Mantener el estado de la authenticación
 
-## Notas
+## Notas sobre Material UI
 
 Link - Este componente de Material solo tiene estilos no funcionalidad asi que debes usar el atributo `component={}`
 
