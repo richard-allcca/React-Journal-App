@@ -6,7 +6,7 @@ import { loadNotes } from "../../helpers";
 export const initNewNote = () => {
 	/**
 	 * @param dispatch lanza la función del slice
-	 * @param getState trae toda los states del store
+	 * @param getState accede a todos los states del store
 	 */
 
 	return async (dispatch, getState) => {

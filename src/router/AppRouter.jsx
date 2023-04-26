@@ -23,7 +23,7 @@ export const AppRouter = () => {
           ? <Route path="/*" element={ <JournalRoutes /> } />
           : <Route path="/auth/*" element={ <AuthRoutes /> } />
       }
-
+      {/* En caso de un ruta desconocida  */ }
       <Route path="/*" element={ <Navigate to='/auth/login' /> } />
 
       {/* Login y Registro */ }
