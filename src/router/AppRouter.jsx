@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { AuthRoutes } from './../auth/routes/AuthRoutes';
 import { JournalRoutes } from "../journal/routes/JournalRoutes";
 
-import ChekingAuth from "../ui/components/ChekingAuth";
+import LoadingAuth from "../ui/components/ChekingAuth";
 import { useCheckAuth } from "../hooks";
 
 
@@ -12,7 +12,7 @@ export const AppRouter = () => {
 
   const { status } = useCheckAuth();
 
-  if (status === 'cheking') return <ChekingAuth />;
+  if (status === 'cheking') return <LoadingAuth />;
 
 
   return (
@@ -25,12 +25,6 @@ export const AppRouter = () => {
       }
       {/* En caso de un ruta desconocida  */ }
       <Route path="/*" element={ <Navigate to='/auth/login' /> } />
-
-      {/* Login y Registro */ }
-      {/* <Route path="/auth/*" element={ <AuthRoutes /> } /> */ }
-
-      {/* JournalApp contenido general */ }
-      {/* <Route path="/*" element={ <JournalRoutes /> } /> */ }
 
     </Routes>
   );

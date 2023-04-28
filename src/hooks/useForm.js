@@ -1,60 +1,72 @@
 import { useEffect, useMemo, useState } from "react";
 
+/**
+ *
+ * @param {*} initialForm valores iniciales del formulario
+ * @param {*} validationsInput obj con funcion y mjs de error
+ * @returns Metodos, objetos con valores de inputs y validacion de errores
+ */
+
 export const useFrom = (initialForm = {}, validationsInput = {}) => {
-	const [formState, setFormState] = useState(initialForm);
-	const [formValidation, setFormValidation] = useState({});
+  const [formState, setFormState] = useState(initialForm);
+  const [formValidation, setFormValidation] = useState({});
 
-	useEffect(() => {
-		createValidators();
-	}, [formState]);
+  useEffect(() => {
+    createValidators();
+  }, [formState]);
 
-	// return true si formValidation tiene errores
-	const isFormValid = useMemo(() => {
-		for (const formValue of Object.keys(formValidation)) {
-			// formValidation debe tener el valor de sus keys en null
-			if (formValidation[formValue] !== null) return false;
-		}
-		return true;
-	}, [formValidation]);
+  // Escucha cambios en los inputs y setea sus valores
+  useEffect(() => {
+    setFormState(initialForm);
+  }, [initialForm]);
 
-	const onInputChange = ({ target }) => {
-		const { name, value } = target;
+  // Utiliza la fn validationsInput para validar los inputs
+  const createValidators = () => {
+    const formCheckedValues = {};
 
-		setFormState({
-			...formState,
-			[name]: value,
-		});
-	};
+    for (const formField of Object.keys(validationsInput)) {
+      // destructura el value de cada key en validationsInput
+      const [fn, errorMessage = "Verifica este campo"] = validationsInput[formField];
 
-	const onResetForm = () => {
-		setFormState(initialForm);
-	};
+      // formCheckedValues almacena null o errorMessage segun valide fn()
+      formCheckedValues[`${formField}Valid`] = fn(formState[formField])
+        ? null
+        : errorMessage;
+    }
+    // se almacena el obj de validaciones
+    setFormValidation(formCheckedValues);
+  };
 
-	const createValidators = () => {
-		const formCheckedValues = {};
+  // Retorna true si formValidation no tiene errores en sus elementos
+  const isFormValid = useMemo(() => {
+    for (const formValue of Object.keys(formValidation)) {
+      // formValidation debe tener el valor de sus keys en null
+      if (formValidation[formValue] !== null) return false;
+    }
+    return true;
+  }, [formValidation]);
 
-		for (const formField of Object.keys(validationsInput)) {
-			// destructura el value de cada key en validationsInput
-			const [fn, errorMessage = "Verifica este campo"] =
-				validationsInput[formField];
+  const onInputChange = ({ target }) => {
+    const { name, value } = target;
 
-			// formCheckedValues almacena null o errorMessage segun valide fn()
-			formCheckedValues[`${formField}Valid`] = fn(formState[formField])
-				? null
-				: errorMessage;
-		}
-		// se almacena el obj de validaciones
-		setFormValidation(formCheckedValues);
-	};
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
 
-	return {
-		...formState,
-		formState,
+  const onResetForm = () => {
+    setFormState(initialForm);
+  };
 
-		onResetForm,
-		onInputChange,
+  return {
+    ...formState,
+    formState,
 
-		...formValidation,
-		isFormValid,
-	};
+    onResetForm,
+    onInputChange,
+
+    ...formValidation,
+    isFormValid,
+  };
 };

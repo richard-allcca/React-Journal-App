@@ -28,24 +28,34 @@ export const journalSlice = createSlice({
 		},
 		setActiveNote: (state, action) => {
 			state.active = action.payload;
+      state.messageSaved = '';
 		},
 		setNotes: (state, action) => {
 			state.notes = action.payload;
 		},
-		setSaving: (state, action) => {},
-		updateNotes: (state, action) => {},
+		setSaving: (state, action) => {
+			state.isSaving = true;
+      state.messageSaved = '';
+		},
+		updateNotes: (state, action) => {
+			state.isSaving = false;
+			state.notes = state.notes.map((el) =>
+				el.id === action.payload.id ? action.payload : el
+			);
+      state.messageSaved = `${action.payload.title}, Actualizada correctamente`;
+		},
 		deleteNoteById: (state, action) => {},
 	},
 });
 
 export const {
-	savingNewNote,
 	addNewNote,
+	deleteNoteById,
+	savingNewNote,
 	setActiveNote,
 	setNotes,
 	setSaving,
 	updateNotes,
-	deleteNoteById,
 } = journalSlice.actions;
 
 // export default journalSlice.reducer;

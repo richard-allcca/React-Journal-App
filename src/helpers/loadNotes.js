@@ -1,16 +1,27 @@
 import { collection, getDocs } from "firebase/firestore/lite";
 import { FirebaseDB } from "./../firebase/config";
 
+/**
+ * Helper to get notes
+ * @param {*} uid - id del usuario
+ * @returns - nota desde firestore
+ */
+
 export const loadNotes = async (uid = "") => {
-	if (!uid) throw new Error("missing UID user, loadNotes");
+  if (!uid) throw new Error("missing UID user, loadNotes");
 
-	const collectionRef = collection(FirebaseDB, `${uid}`);
-	const docs = await getDocs(collectionRef); // puedes agregar filtros de mongo para consultas
+  // referencia a la colección en firebase
+  const collectionRef = collection(FirebaseDB, `${uid}/journal/notes`);
 
-	const notes = [];
-	docs.forEach((doc) => {
-		notes.push(doc.id, doc.data());
-	});
+  // puedes agregar filtros de mongo para consultas
+  const docs = await getDocs(collectionRef);
 
-	return notes;
+  const notes = [];
+
+  // extraemos id y data de cada documento
+  docs.forEach((doc) => {
+    notes.push({ id: doc.id, ...doc.data() });
+  });
+
+  return notes;
 };

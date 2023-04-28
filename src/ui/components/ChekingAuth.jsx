@@ -1,9 +1,7 @@
 import { CircularProgress, Grid } from '@mui/material';
 import React from 'react';
 
-// NOTE - componente spinner o loading
-
-const ChekingAuth = () => {
+const LoadingAuth = () => {
   return (
     <Grid
       container
@@ -30,4 +28,4 @@ const ChekingAuth = () => {
   );
 };
 
-export default ChekingAuth;
+export default LoadingAuth;

@@ -1,43 +1,65 @@
 import { collection, doc, setDoc } from "firebase/firestore/lite";
 import { FirebaseDB } from "./../../firebase/config";
-import { addNewNote, setActiveNote, setNotes } from "./";
+import { addNewNote, savingNewNote, setActiveNote, setNotes, setSaving, updateNotes } from "./";
 import { loadNotes } from "../../helpers";
 
-export const initNewNote = () => {
-	/**
-	 * @param dispatch lanza la función del slice
-	 * @param getState accede a todos los states del store
-	 */
+export const startSavingNewNote = () => {
+  /**
+   * @param dispatch lanza la función del slice
+   * @param getState accede a todos los states del store
+   */
 
-	return async (dispatch, getState) => {
-		const { uid } = getState().auth;
+  return async (dispatch, getState) => {
+    const { uid } = getState().auth;
 
-		// uid
-		const newNote = {
-			title: "",
-			body: "",
-			date: new Date().getTime(),
-		};
+    dispatch(savingNewNote());
 
-		// NOTE - importante configurar las reglas en Cloud Firestore para que reciba peticiones de user authenticated class/300
+    const newNote = {
+      title: "",
+      body: "",
+      date: new Date().getTime(),
+    };
 
-		const newDoc = doc(collection(FirebaseDB, `${uid}`));
-		await setDoc(newDoc, newNote);
+    // NOTE - importante configurar las reglas en Cloud Firestore para que reciba peticiones de user authenticated class/300
 
-		newNote.id = newDoc.id;
+    const newDocRef = doc(collection(FirebaseDB, `${uid}/journal/notes`));
+    await setDoc(newDocRef, newNote);
 
-		dispatch(addNewNote(newNote));
-		dispatch(setActiveNote(newNote));
-	};
+    newNote.id = newDocRef.id;
+
+    dispatch(addNewNote(newNote));
+    dispatch(setActiveNote(newNote));
+  };
 };
 
-export const initLoadingNotes = () => {
-	return async (dispatch, getState) => {
-		const { uid } = getState().auth;
+export const startLoadingNotes = () => {
 
-		if (!uid) throw new Error("El UID del usuario no existe");
-		// console.log(uid);
-		const getListNotes = await loadNotes(uid);
-		dispatch(setNotes(getListNotes));
-	};
+  return async (dispatch, getState) => {
+    const { uid } = getState().auth;
+
+    if (!uid) throw new Error("El UID del usuario no existe");
+
+    const getListNotes = await loadNotes(uid);
+    dispatch(setNotes(getListNotes));
+  };
+};
+
+export const startSaveNote = () => {
+  return async (dispatch, getState) => {
+
+    dispatch(setSaving());
+
+    const { uid } = getState().auth;
+    const { active: note } = getState().journal;
+
+    const noteToFirestore = { ...note };
+    delete noteToFirestore.id;
+
+    // Actualiza la nota en Firestore
+    const docRef = doc(FirebaseDB, `${uid}/journal/notes/${note.id}`);
+    await setDoc(docRef, noteToFirestore, { merge: true });
+
+    // Actualiza la nota en local
+    dispatch(updateNotes(note));
+  };
 };

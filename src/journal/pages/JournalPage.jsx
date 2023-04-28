@@ -6,14 +6,14 @@ import { NothingSelectedView } from "./../views/NothingSelectedView";
 import { NoteView } from "./../views/NoteView";
 
 import { useDispatch, useSelector } from "react-redux";
-import { initNewNote, savingNewNote } from "../../store/journal";
+import { startSavingNewNote, savingNewNote } from "../../store/journal";
 
 export const JournalPage = () => {
   const { isSaving, active } = useSelector((state) => state.journal);
   const dispatch = useDispatch();
 
   const onClickNewNote = () => {
-    dispatch(initNewNote());
+    dispatch(startSavingNewNote());
     dispatch(savingNewNote());
   };
 
