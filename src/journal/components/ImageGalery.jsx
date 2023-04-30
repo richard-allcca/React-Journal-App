@@ -1,19 +1,20 @@
-// import ImageList from '@mui/material/ImageList';
-// import ImageListItem from '@mui/material/ImageListItem';
 
 import { ImageList, ImageListItem } from "@mui/material";
 
+// NOTE - src and srcSet son configuraciones propias de Material para img
 
-export const ImageGalery = () => {
+export const ImageGalery = ({ imageUrls }) => {
+
   return (
     <ImageList sx={ { width: "100%", height: 550 } } cols={ 4 } rowHeight={ 200 }>
-      { itemData.map((item) => (
-        <ImageListItem key={ item.img }>
+      { imageUrls.map((item, id) => (
+        <ImageListItem key={ id }>
           <img
-            src={ `${item.img}?w=164&h=164&fit=crop&auto=format` }
-            srcSet={ `${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x` }
-            alt={ item.title }
+            src={ `${item}?w=164&h=164&fit=crop&auto=format` }
+            srcSet={ `${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x` }
+            alt="Imagen de la nota"
             loading="lazy"
+            className="img-note"
           />
         </ImageListItem>
       )) }
@@ -72,4 +73,3 @@ const itemData = [
   },
 ];
 
-// NOTE - src and srcSet son configuraciones propias de Material para img
