@@ -3,21 +3,26 @@ import { ImageList, ImageListItem } from "@mui/material";
 
 // NOTE - src and srcSet son configuraciones propias de Material para img
 
-export const ImageGalery = ({ imageUrls }) => {
+export const ImageGalery = ({ imageUrls = []}) => {
+
+  // if(imageUrls === undefined) return;
 
   return (
     <ImageList sx={ { width: "100%", height: 550 } } cols={ 4 } rowHeight={ 200 }>
-      { imageUrls.map((item, id) => (
-        <ImageListItem key={ id }>
-          <img
-            src={ `${item}?w=164&h=164&fit=crop&auto=format` }
-            srcSet={ `${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x` }
-            alt="Imagen de la nota"
-            loading="lazy"
-            className="img-note"
-          />
-        </ImageListItem>
-      )) }
+      {
+        !imageUrls
+          ? <p style={{textAlign:'center', fontWeight: 'bold'}} >Nota sin imagenes</p>
+          : imageUrls?.map((item, id) => (
+            <ImageListItem key={ id }>
+              <img
+                src={ `${item}?w=164&h=164&fit=crop&auto=format` }
+                srcSet={ `${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x` }
+                alt="Imagen de la nota"
+                loading="lazy"
+                className="img-note"
+              />
+            </ImageListItem>
+          )) }
     </ImageList>
   );
 };

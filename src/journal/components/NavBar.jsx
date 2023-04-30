@@ -3,7 +3,6 @@ import MenuOutlineIcon from '@mui/icons-material/MenuOutlined';
 import { LogoutOutlined } from '@mui/icons-material';
 import { initLogout } from './../../store/auth/autThhunk';
 import { useDispatch } from 'react-redux';
-import { resetAcitveNote } from "../../store/journal";
 
 
 export const NavBar = ({ drawerWidth = 240 }) => {
@@ -13,7 +12,6 @@ export const NavBar = ({ drawerWidth = 240 }) => {
   function onLogout() {
     // console.log('logout');
     dispatch(initLogout());
-    dispatch(resetAcitveNote())
   }
 
   return (

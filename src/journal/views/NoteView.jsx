@@ -1,10 +1,10 @@
-import { SaveOutlined, UploadOutlined } from "@mui/icons-material";
+import { DeleteOutline, SaveOutlined, UploadOutlined } from "@mui/icons-material";
 import { Button, Grid, IconButton, TextField, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { ImageGalery } from "../components/";
 import { useFrom } from "../../hooks/useForm";
 import { useEffect, useMemo, useRef } from "react";
-import { setActiveNote, startSaveNote, startUploadingFiles } from "../../store/journal";
+import { setActiveNote, startDeletingNote, startSaveNote, startUploadingFiles } from "../../store/journal";
 
 import Swal from "sweetalert2";
 import 'sweetalert2/dist/sweetalert2.css';
@@ -17,7 +17,7 @@ export const NoteView = () => {
 
   const dispatch = useDispatch();
 
-  const { body, title, date, onInputChange, formState } = useFrom(note);
+  const { body, title, date, onInputChange, formState, imageUrls } = useFrom(note);
 
   // Evita render de la fecha con cambios en el input
   const formatDate = useMemo(() => {
@@ -48,6 +48,10 @@ export const NoteView = () => {
 
   const onSaveNote = () => {
     dispatch(startSaveNote());
+  };
+
+  const onDelete = () => {
+    dispatch(startDeletingNote());
   };
 
   return (
@@ -120,7 +124,19 @@ export const NoteView = () => {
         />
       </Grid>
 
-      <ImageGalery title={title} imageUrls={note.imageUrls} />
+      <Grid container justifyContent='end' >
+        <Button
+          onClick={ onDelete }
+          sx={ { mt: 2 } }
+          color="error"
+        >
+          <DeleteOutline />
+          Borrar
+        </Button>
+
+      </Grid>
+
+      <ImageGalery title={ title } imageUrls={ imageUrls } />
     </Grid>
   );
 };
