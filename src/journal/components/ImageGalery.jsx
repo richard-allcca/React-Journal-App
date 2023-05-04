@@ -10,7 +10,7 @@ export const ImageGalery = ({ imageUrls = []}) => {
   return (
     <ImageList sx={ { width: "100%", height: 550 } } cols={ 4 } rowHeight={ 200 }>
       {
-        !imageUrls
+        imageUrls.length === 0
           ? <p style={{textAlign:'center', fontWeight: 'bold'}} >Nota sin imagenes</p>
           : imageUrls?.map((item, id) => (
             <ImageListItem key={ id }>

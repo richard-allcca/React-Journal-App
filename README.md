@@ -6,7 +6,7 @@ Tiene authentication con Google
 
 ## NPM
 
-  yarn install @mui/material @emotion/react @emotion/styled
+    yarn install @mui/material @emotion/react @emotion/styled
 
 ## Temas tocados en este proyecto
 
