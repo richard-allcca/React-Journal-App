@@ -1,4 +1,4 @@
-# Journal App (IN PROGRESS)
+# Journal App
 
 Una aplicación que simula una especie de diario digital, permite crear todo tipo de anotaciones y agregar imagenes.
 
@@ -6,7 +6,17 @@ Tiene autenticación con Email y Password, También autenticación con **Google 
 
 Esta aplicación esta conectada en su autenticación con **Firebase** y para almacenamiento con **Firestore**
 
-## NPM instalaciones
+## Correr Proyecto en local
+
+No olvides instalar los modulos con:
+
+    yarn ó npm i
+
+Levantar el proyecto
+
+    npm start ó yarn dev
+
+## NPM
 
     yarn install @mui/material
     yarn @emotion/react
