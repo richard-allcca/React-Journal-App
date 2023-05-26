@@ -21,6 +21,7 @@ export const journalSlice = createSlice({
   reducers: {
     savingNewNote: (state) => {
       state.isSaving = true;
+      state.messageSaved = 'Nota creada'
     },
     addNewNote: (state, action) => {
       state.notes.push(action.payload);

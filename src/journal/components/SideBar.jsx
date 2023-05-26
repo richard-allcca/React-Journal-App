@@ -12,9 +12,9 @@ export const SideBar = ({ drawerWidth = 240 }) => {
       component="nav"
       sx={ { width: { sm: drawerWidth }, flexShrink: { sm: 0 } } }
     >
-      <Drawer // component mateial
-        variant='permanent'//  ó temporary en caso este component sea condicional
-        open={ true } // si nunca va a cambiar no necesita el true
+      <Drawer
+        variant='permanent'// ó temporary en caso este component sea condicional
+        open={ true }
         sx={ {
           display: { xs: 'block' },
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth }
@@ -37,7 +37,7 @@ export const SideBar = ({ drawerWidth = 240 }) => {
         <List>
           {
             notes.map(note => (
-              <SideBarItem key={note.id} {...note} />
+              <SideBarItem key={ note.id } { ...note } />
             ))
           }
         </List>

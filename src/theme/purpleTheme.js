@@ -1,8 +1,8 @@
 import { createTheme } from "@mui/material";
 
-// NOTE -  Como este red Material tiene muchos temas predefinidos por si no quieres crearlo desde cero
-import { red } from "@mui/material/colors";
+// NOTE -  Como red: Material tiene muchos temas predefinidos por si no quieres crearlo desde cero
 
+import { red } from "@mui/material/colors";
 
 export const purpleTheme = createTheme({
   palette: {

@@ -1,7 +1,7 @@
 import { TurnedInNot } from '@mui/icons-material';
 import { Grid, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import React, { useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setActiveNote } from '../../store/journal';
 
 const SideBarItem = ({ title = '', body, id, date, imageUrls = [] }) => {
@@ -14,9 +14,8 @@ const SideBarItem = ({ title = '', body, id, date, imageUrls = [] }) => {
       : title;
   }, [title]);
 
-  // setea la nota activa
   const onActivateNote = () => {
-    dispatch(setActiveNote({title, body, id, date, imageUrls}));
+    dispatch(setActiveNote({ title, body, id, date, imageUrls }));
   };
 
   return (

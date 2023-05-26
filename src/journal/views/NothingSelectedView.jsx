@@ -4,6 +4,7 @@ import { StarOutline } from "@mui/icons-material";
 
 
 export const NothingSelectedView = () => {
+
   return (
     <Grid
       container

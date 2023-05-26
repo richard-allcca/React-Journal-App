@@ -1,6 +1,8 @@
 import { CircularProgress, Grid } from '@mui/material';
 import React from 'react';
 
+// NOTE - Loading component
+
 const LoadingAuth = () => {
   return (
     <Grid

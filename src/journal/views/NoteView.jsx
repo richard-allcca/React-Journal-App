@@ -12,7 +12,7 @@ import 'sweetalert2/dist/sweetalert2.css';
 export const NoteView = () => {
   const fileInputRef = useRef();
 
-  // usamos la nota activa para pasarla al useform y mostrarla para edicion
+  // usamos la nota activa para mostrarla para edicion
   const { active: note, isSaving, messageSaved } = useSelector((state) => state.journal);
 
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ export const NoteView = () => {
   // Evita render de la fecha con cambios en el input
   const formatDate = useMemo(() => {
     const newData = new Date(date);
-    return newData.toUTCString();
+    return newData.toLocaleString();
   }, [date]);
 
   // actualiza la nota activa para usarla en NoteView

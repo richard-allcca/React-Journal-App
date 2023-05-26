@@ -1,9 +1,9 @@
 
 import { ImageList, ImageListItem } from "@mui/material";
 
-// NOTE - src and srcSet son configuraciones propias de Material para img
+// NOTE - src and srcSet tienen configuraciones propias de Material para img
 
-export const ImageGalery = ({ imageUrls = []}) => {
+export const ImageGalery = ({ imageUrls = [] }) => {
 
   // if(imageUrls === undefined) return;
 
@@ -11,7 +11,7 @@ export const ImageGalery = ({ imageUrls = []}) => {
     <ImageList sx={ { width: "100%", height: 550 } } cols={ 4 } rowHeight={ 200 }>
       {
         imageUrls.length === 0
-          ? <p style={{textAlign:'center', fontWeight: 'bold'}} >Nota sin imagenes</p>
+          ? <p style={ { textAlign: 'center', fontWeight: 'bold' } } >Nota sin imagenes</p>
           : imageUrls?.map((item, id) => (
             <ImageListItem key={ id }>
               <img
@@ -22,7 +22,8 @@ export const ImageGalery = ({ imageUrls = []}) => {
                 className="img-note"
               />
             </ImageListItem>
-          )) }
+          ))
+      }
     </ImageList>
   );
 };

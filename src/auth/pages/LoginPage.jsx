@@ -10,7 +10,6 @@ import { AuthLayout } from './../layout/AuthLayout';
 import { initLoginWithEmailPassword, startGoogleSingIn } from './../../store/auth';
 import { useMemo, useState } from 'react';
 
-
 const initialState = {
   displayName: '',
   email: '',
@@ -21,7 +20,6 @@ const validationsInput = {
   email: [(value) => value.includes('@'), 'El correo debe tener una @'],
   password: [(value) => value.length >= 6, 'El password debe tener más de 6 caracteres'],
 };
-
 
 export const LoginPage = () => {
   const [isSubmited, setIsSubmited] = useState(false);

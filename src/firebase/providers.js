@@ -9,14 +9,12 @@ import { FirebaseAuth } from "./config";
 
 const googleProvider = new GoogleAuthProvider();
 
-// Class - 278 Auth con google
+// LOGIN WITH GOOGLE - 278 Auth con google
 
 export const singInWithGoogle = async () => {
+
   try {
     const result = await signInWithPopup(FirebaseAuth, googleProvider);
-
-    // REVIEW - Método para obtiener las credentials de google como el token y más
-    // const credentials = GoogleAuthProvider.credentialFromResult(result);
 
     // Datos del usuario authenticado
     const { displayName, email, photoURL, uid } = result.user;
@@ -37,7 +35,6 @@ export const singInWithGoogle = async () => {
     const email = error.customData.email;
     // The AuthCredential type that was used. (optional)
     const credential = GoogleAuthProvider.credentialFromError(error);
-    // ...
 
     return {
       ok: false,
@@ -46,6 +43,8 @@ export const singInWithGoogle = async () => {
     };
   }
 };
+
+// LOGIN EMAIL AND PASSWORD
 
 export const registerUserWithEmailPassword = async ({
   email,
@@ -61,7 +60,7 @@ export const registerUserWithEmailPassword = async ({
     );
     const { uid, photoURL } = resp.user;
 
-    // NOTE - actualizamos el user actual agregando el displayName
+    // Actualizamos el user actual agregando el displayName
     await updateProfile(FirebaseAuth.currentUser, { displayName });
 
     return {
@@ -79,6 +78,8 @@ export const registerUserWithEmailPassword = async ({
     };
   }
 };
+
+// REGISTRO
 
 export const loginWithEmailPassword = async ({ email, password }) => {
   try {

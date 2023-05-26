@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { IconButton } from "@mui/material";
 import { AddOutlined } from "@mui/icons-material";
 
@@ -6,15 +7,28 @@ import { NothingSelectedView } from "./../views/NothingSelectedView";
 import { NoteView } from "./../views/NoteView";
 
 import { useDispatch, useSelector } from "react-redux";
-import { startSavingNewNote, savingNewNote } from "../../store/journal";
+import { startSavingNewNote } from "../../store/journal";
+
+import Swal from "sweetalert2";
+import 'sweetalert2/dist/sweetalert2.css';
 
 export const JournalPage = () => {
-  const { isSaving, active } = useSelector((state) => state.journal);
+  const { isSaving, active, messageSaved, title } = useSelector((state) => state.journal);
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (messageSaved.length > 0) {
+      Swal.fire({
+        title,
+        text: messageSaved,
+        timer: 3000
+      });
+    }
+  }, [messageSaved]);
 
   const onClickNewNote = () => {
     dispatch(startSavingNewNote());
-    dispatch(savingNewNote());
   };
 
   return (

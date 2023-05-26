@@ -7,13 +7,11 @@ import LoadingAuth from "../ui/components/ChekingAuth";
 import { useCheckAuth } from "../hooks";
 
 
-
 export const AppRouter = () => {
 
   const { status } = useCheckAuth();
 
   if (status === 'cheking') return <LoadingAuth />;
-
 
   return (
     <Routes >
@@ -23,6 +21,7 @@ export const AppRouter = () => {
           ? <Route path="/*" element={ <JournalRoutes /> } />
           : <Route path="/auth/*" element={ <AuthRoutes /> } />
       }
+
       {/* En caso de un ruta desconocida  */ }
       <Route path="/*" element={ <Navigate to='/auth/login' /> } />
 

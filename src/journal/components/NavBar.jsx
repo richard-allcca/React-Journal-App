@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 
 
 export const NavBar = ({ drawerWidth = 240 }) => {
-
   const dispatch = useDispatch();
 
   function onLogout() {
@@ -14,7 +13,7 @@ export const NavBar = ({ drawerWidth = 240 }) => {
   }
 
   return (
-    <AppBar // component material
+    <AppBar
       position="fixed"
       elevation={ 0 }
       sx={ {
@@ -24,7 +23,6 @@ export const NavBar = ({ drawerWidth = 240 }) => {
     >
 
       <Toolbar>
-
         <IconButton
           // size='large'
           edge='start'
@@ -48,18 +46,9 @@ export const NavBar = ({ drawerWidth = 240 }) => {
             color='error'  >
             <LogoutOutlined />
           </IconButton>
-
         </Grid>
-
       </Toolbar>
 
     </AppBar>
   );
 };
-
-
-   // <div style={ { flex: 1 } } />
-
-   // <Link component={ LinkRouter } color="#fff" underline='none' >
-   //    <Typography variant='h6' color="white">Cambiar tema</Typography>
-   // </Link>
