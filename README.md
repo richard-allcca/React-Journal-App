@@ -2,11 +2,15 @@
 
 Una aplicación que simula una especie de diario digital, permite crear todo tipo de anotaciones y agregar imagenes.
 
-Tiene authentication con Google
+Tiene autenticación con Email y Password, También autenticación con **Google SingIn**
 
-## NPM
+Esta aplicación esta conectada en su autenticación con **Firebase** y para almacenamiento con **Firestore**
 
-    yarn install @mui/material @emotion/react @emotion/styled
+## NPM instalaciones
+
+    yarn install @mui/material
+    yarn @emotion/react
+    yarn @emotion/styled
 
 ## Temas tocados en este proyecto
 
@@ -48,7 +52,7 @@ XL - Pantalla grande
 
 ## Vista Previa
 
-![En progreso](/public/Captura%20de%20pantalla%202023-03-12%20095507.png)
+![En progreso](/public/journal-app.png)
 
 ## Flujo de Archivos
 
