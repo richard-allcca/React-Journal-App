@@ -32,7 +32,7 @@ export const RegisterPage = () => {
   const isAuthentication = useMemo(() => status === 'cheking', [status]);
 
   const {
-    formState, displayName, email, password, onInputChange,
+    formState, displayName, onInputChange,
     isFormValid, displayNameValid, emailValid, passwordValid
   } = useFrom(initialState, validationsInputs);
 

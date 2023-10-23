@@ -1,5 +1,7 @@
 # Journal App
 
+***node 16.17.0***
+
 Una aplicación que simula una especie de diario digital, permite crear todo tipo de anotaciones y agregar imagenes.
 
 Tiene autenticación con Email y Password, También autenticación con **Google SingIn**

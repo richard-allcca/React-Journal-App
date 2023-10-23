@@ -36,7 +36,6 @@ export const LoginPage = () => {
     isFormValid, emailValid, passwordValid,
   } = useFrom(initialState, validationsInput);
 
-
   const onSubmit = (event) => {
     event.preventDefault();
     setIsSubmited(true);

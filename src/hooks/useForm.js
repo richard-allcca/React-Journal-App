@@ -19,14 +19,13 @@ export const useFrom = (initialForm = {}, validationsInput = {}) => {
 		setFormState(initialForm);
 	}, [initialForm]);
 
-	// Utiliza la fn validationsInput para validar los inputs
+	// Valida los campos del formulario
 	const createValidators = () => {
 		const formCheckedValues = {};
 
 		for (const formField of Object.keys(validationsInput)) {
 			// Obtiene los elementos del array de cada objeto
-			const [fn, errorMessage = "Verifica este campo"] =
-				validationsInput[formField];
+			const [fn, errorMessage = "Verifica este campo"] = validationsInput[formField];
 
 			// formCheckedValues almacena null o errorMessage segun valide fn()
 			formCheckedValues[`${formField}Valid`] = fn(formState[formField])
@@ -37,7 +36,7 @@ export const useFrom = (initialForm = {}, validationsInput = {}) => {
 		setFormValidation(formCheckedValues);
 	};
 
-	// Verifica el valor de los inputs sean validos
+	// Verifica todos los campos de formValidation
 	const isFormValid = useMemo(() => {
 		for (const formValue of Object.keys(formValidation)) {
 			// formValidation debe tener sus elementos en null
