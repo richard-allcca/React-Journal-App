@@ -40,7 +40,7 @@ Levantar el proyecto
 - Firebase
 - Firestore
 - Formularios
-- Google SingIn
+- Google SingIn (firebase)
 - Acciones Asíncronas
 - Mantener el estado de la authenticación
 

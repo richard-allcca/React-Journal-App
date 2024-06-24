@@ -7,7 +7,7 @@ import {
 } from "firebase/auth";
 import { FirebaseAuth } from "./config";
 
-const googleProvider = new GoogleAuthProvider();
+  const googleProvider = new GoogleAuthProvider();
 
 // LOGIN WITH GOOGLE - 278 Auth con google
 
