@@ -22,14 +22,14 @@ const validationsInput = {
 };
 
 export const LoginPage = () => {
-  const [isSubmited, setIsSubmited] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const dispatch = useDispatch();
 
   const { status, errorMessage } = useSelector(state => state.auth);
 
-  // Desactiva los botones mientras esta authenticando
-  const isAuthentication = useMemo(() => status === 'cheking', [status]);
+  // Desactiva los botones mientras esta autenticando
+  const isAuthentication = useMemo(() => status === 'checking', [status]);
 
   const {
     formState, email, password, onInputChange,
@@ -38,7 +38,7 @@ export const LoginPage = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    setIsSubmited(true);
+    setIsSubmitted(true);
 
     if (!isFormValid) return;
 
@@ -70,7 +70,7 @@ export const LoginPage = () => {
               name="email"
               value={ email }
               onChange={ onInputChange }
-              error={ emailValid && isSubmited }
+              error={ emailValid && isSubmitted }
               helperText={ emailValid }
             />
           </Grid>
@@ -84,7 +84,7 @@ export const LoginPage = () => {
               name='password'
               value={ password }
               onChange={ onInputChange }
-              error={ passwordValid && isSubmited }
+              error={ passwordValid && isSubmitted }
             />
           </Grid>
 
@@ -103,7 +103,7 @@ export const LoginPage = () => {
             <Grid item xs={ 12 } sm={ 6 } >
               <Button
                 disabled={ isAuthentication }
-                type='submit' //! importante para el onSubmit 
+                type='submit' //! importante para el onSubmit
                 variant="contained"
                 fullWidth >
                 Login

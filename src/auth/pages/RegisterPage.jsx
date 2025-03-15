@@ -16,7 +16,7 @@ const initialState = {
   password: '',
 };
 
-const validationsInputs = {
+const inputErrorMessages = {
   email: [(value) => value.includes('@'), 'El correo debe tener una @'],
   password: [(value) => value.length >= 6, 'El password debe tener más de 6 caracteres'],
   displayName: [(value) => value.length >= 2, 'El nombre es obligatorio'],
@@ -24,21 +24,26 @@ const validationsInputs = {
 
 
 export const RegisterPage = () => {
-  const [isSubmited, setIsSubmited] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const dispatch = useDispatch();
 
   const { status, errorMessage } = useSelector((state) => state.auth);
-  const isAuthentication = useMemo(() => status === 'cheking', [status]);
+	const isAuthentication = useMemo(() => status === "checking", [status]);
 
   const {
-    formState, displayName, onInputChange,
-    isFormValid, displayNameValid, emailValid, passwordValid
-  } = useFrom(initialState, validationsInputs);
+    formState,
+    displayName,
+    onInputChange,
+    isFormValid,
+    displayNameValid,
+    emailValid, passwordValid
+  } = useFrom(initialState, inputErrorMessages);
+    console.log("🚀 ~ RegisterPage ~ isFormValid:", isFormValid)
 
   const onSubmit = (event) => {
     event.preventDefault();
-    setIsSubmited(true);
+    setIsSubmitted(true);
 
     if (!isFormValid) return;
 
@@ -47,7 +52,7 @@ export const RegisterPage = () => {
 
   return (
     <AuthLayout title="Crear cuenta" >
-      <h1>Validation: { isFormValid ? 'valido' : 'no valido' }</h1>
+      <h1>Formulario: { isFormValid ? 'valido' : 'no valido' }</h1>
       <form onSubmit={ onSubmit } >
         <Grid container >
 
@@ -61,7 +66,7 @@ export const RegisterPage = () => {
               fullWidth
               name="displayName"
               onChange={ onInputChange }
-              error={ displayNameValid && isSubmited }
+              error={ displayNameValid && isSubmitted }
               helperText={ displayName }
             />
           </Grid>
@@ -74,7 +79,7 @@ export const RegisterPage = () => {
               fullWidth
               name='email'
               onChange={ onInputChange }
-              error={ emailValid && isSubmited }
+              error={ emailValid && isSubmitted }
               helperText={ emailValid }
             />
           </Grid>
@@ -87,7 +92,7 @@ export const RegisterPage = () => {
               fullWidth
               name='password'
               onChange={ onInputChange }
-              error={ passwordValid && isSubmited }
+              error={ passwordValid && isSubmitted }
               helperText={ passwordValid }
             />
           </Grid>
@@ -105,7 +110,7 @@ export const RegisterPage = () => {
 
             <Grid item xs={ 12 } >
               <Button
-                disabled={ isAuthentication }
+                disabled={ !isFormValid || isAuthentication }
                 type='submit'
                 variant="contained"
                 fullWidth >

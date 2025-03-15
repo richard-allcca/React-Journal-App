@@ -3,11 +3,11 @@ import { useEffect, useMemo, useState } from "react";
 /**
  *
  * @param {*} initialForm valores iniciales del formulario
- * @param {*} validationsInput obj con funcion y mjs de error
- * @returns Metodos, objetos con valores de inputs y validacion de errores
+ * @param {*} inputErrorMessages obj con función y mjs de error
+ * @returns Métodos, objetos con valores de inputs y validación de errores
  */
 
-export const useFrom = (initialForm = {}, validationsInput = {}) => {
+export const useFrom = (initialForm = {}, inputErrorMessages = {}) => {
 	const [formState, setFormState] = useState(initialForm);
 	const [formValidation, setFormValidation] = useState({});
 
@@ -23,12 +23,12 @@ export const useFrom = (initialForm = {}, validationsInput = {}) => {
 	const createValidators = () => {
 		const formCheckedValues = {};
 
-		for (const formField of Object.keys(validationsInput)) {
+		for (const inputField of Object.keys(inputErrorMessages)) {
 			// Obtiene los elementos del array de cada objeto
-			const [fn, errorMessage = "Verifica este campo"] = validationsInput[formField];
+			const [fn, errorMessage = "Verifica este campo"] = inputErrorMessages[inputField];
 
-			// formCheckedValues almacena null o errorMessage segun valide fn()
-			formCheckedValues[`${formField}Valid`] = fn(formState[formField])
+			// formCheckedValues almacena null o errorMessage según valide fn()
+			formCheckedValues[`${inputField}Valid`] = fn(formState[inputField])
 				? null
 				: errorMessage;
 		}

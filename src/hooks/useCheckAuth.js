@@ -9,7 +9,7 @@ import { startLoadingNotes } from "../store/journal";
 
 /**
  * customHook to validate state authenticated
- * @returns status, 'not-authenticated' || 'cheking' || 'authenticated'
+ * @returns status, 'not-authenticated' || 'checking' || 'authenticated'
  */
 
 export const useCheckAuth = () => {
@@ -28,6 +28,6 @@ export const useCheckAuth = () => {
   }, []);
 
   return {
-    status, //'not-authenticated','cheking', 'authenticated'
+    status, //'not-authenticated','checking', 'authenticated'
   };
 };
